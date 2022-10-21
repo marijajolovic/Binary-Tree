@@ -1,0 +1,10 @@
+struct TreeNode* sortedArrayToBST(int* nums, int numsSize){
+    struct TreeNode* root = (struct TreeNode*) malloc (sizeof(struct TreeNode));
+    if (numsSize<=0) return NULL;
+
+    root->left = sortedArrayToBST(nums, numsSize/2);
+    root->val = nums[numsSize/2];
+    root->right = sortedArrayToBST(nums + numsSize/2 + 1, numsSize - numsSize/2 - 1);
+
+    return root;
+}
