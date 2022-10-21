@@ -1,0 +1,21 @@
+bool isLeaf(struct TreeNode* root)
+{
+    if (!root) return false;
+    if (!root->left && !root->right) return true;
+    return false;
+}
+
+int minDepthLevel(struct TreeNode* root, int level)
+{
+    if (!root) return;
+    if (isLeaf(root)) return level; 
+    level++;
+    int a = minDepthLevel(root->left, level);
+    int b = minDepthLevel(root->right, level);
+    return (!root->left)? b: ((!root->right)? a: fmin(a,b));
+}
+
+int minDepth(struct TreeNode* root){
+    if (!root) return 0;
+    return minDepthLevel(root, 1);
+}
