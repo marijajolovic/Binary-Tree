@@ -1,0 +1,13 @@
+bool isParent(struct TreeNode* parent, struct TreeNode* child)
+{
+    if (parent==NULL) return false;
+    else if (parent==child) return true;
+    return (isParent(parent->left, child) || isParent(parent->right, child));
+}
+struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) {
+    if (root==NULL)
+        return NULL;
+    if (isParent(root->left, p) && isParent(root->left, q)) return lowestCommonAncestor(root->left, p,q);
+    else if  (isParent(root->right, p) && isParent(root->right, q)) return lowestCommonAncestor(root->right, p,q);
+    else return root;
+}
