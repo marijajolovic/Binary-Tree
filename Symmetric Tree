@@ -1,0 +1,13 @@
+bool isSubSymmetric(struct TreeNode* a, struct TreeNode* b)
+{
+    if(!a && !b)  return true;
+    else if (!a || !b)  return false;
+    if (a->val!=b->val) return false;
+    return (isSubSymmetric(a->left, b->right) && isSubSymmetric(a->right, b->left));
+}
+
+bool isSymmetric(struct TreeNode* root){
+    
+    //if (!root) return true;
+    return isSubSymmetric(root->left, root->right);
+}
