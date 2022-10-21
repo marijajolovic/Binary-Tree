@@ -1,0 +1,13 @@
+struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) {
+    
+    if (root==NULL) return NULL;
+    if (root==p || root==q) return root;
+    
+    struct TreeNode *levi = lowestCommonAncestor(root->left, p, q);
+    struct TreeNode *desni = lowestCommonAncestor(root-> right, p, q);
+    
+    if (levi && desni) return root;
+    
+    return (levi!=NULL)? levi : desni;
+    
+}
