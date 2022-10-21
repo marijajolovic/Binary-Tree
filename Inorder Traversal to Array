@@ -1,0 +1,15 @@
+void travel(struct TreeNode* root, int* returnSize, int* niz)
+{
+    if (!root) return;
+    travel(root->left, returnSize, niz);
+    niz[(*returnSize)++]=root->val;
+    travel(root->right, returnSize, niz);
+}
+
+int* inorderTraversal(struct TreeNode* root, int* returnSize){  
+    
+    int* niz = (int*) calloc(100,sizeof(int));
+    *returnSize=0;
+    travel(root, returnSize, niz);
+    return niz;
+}
